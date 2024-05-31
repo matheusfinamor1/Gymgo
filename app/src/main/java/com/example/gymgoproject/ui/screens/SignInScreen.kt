@@ -77,7 +77,7 @@ fun SignInScreen(
                 val trailingIconModifier = Modifier.clickable {
                     uiState.onTogglePasswordVisibility()
                 }
-                when(uiState.isShowPassword){
+                when (uiState.isShowPassword) {
                     true -> {
                         Icon(
                             painter = painterResource(id = R.drawable.visibility),
@@ -85,6 +85,7 @@ fun SignInScreen(
                             trailingIconModifier
                         )
                     }
+
                     else -> Icon(
                         painter = painterResource(id = R.drawable.visibility_off),
                         contentDescription = "Icone de invisivel",
@@ -92,7 +93,7 @@ fun SignInScreen(
                     )
                 }
             },
-            visualTransformation = when(uiState.isShowPassword){
+            visualTransformation = when (uiState.isShowPassword) {
                 false -> PasswordVisualTransformation()
                 true -> VisualTransformation.None
             }

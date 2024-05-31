@@ -5,10 +5,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.gymgoproject.ui.screens.SignInScreen
-import com.example.gymgoproject.ui.states.SignInUiState
+import com.example.gymgoproject.ui.navigation.authGraph
+import com.example.gymgoproject.ui.navigation.authGraphRoute
+import com.example.gymgoproject.ui.navigation.navigateToSignUp
 import com.example.gymgoproject.ui.theme.GymgoProjectTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,11 +20,17 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = "signIn"
+                    startDestination = authGraphRoute
                 ) {
-                    composable("signIn") {
-                        SignInScreen(uiState = SignInUiState())
-                    }
+                    authGraph(
+                        onNavigateToSignIn = {
+                            navController.navigateToSignUp()
+                        },
+                        onNavigateToSignUp = {
+                            navController.navigateToSignUp()
+                        }
+                    )
+
                 }
             }
         }
